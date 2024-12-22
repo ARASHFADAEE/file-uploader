@@ -108,7 +108,7 @@ if(isset($_GET['delete'])){
 
                 <?php endif;?>
 
-                <td>
+                <td style="padding-top: 22px ">
                     <a class="delete-btn" href="index.php?delete=<?= $file['id']?>">delete</a>
                     <a class="save-btn" download href="<?= $file['file_link']?>">download</a>
                 </td>
