@@ -34,5 +34,5 @@ Hi 👋! My name is Hossein and I'm a Backend Developer from AriasCode
 
 ## Screenshots
 
-![App Screenshot](https://dl.volnamusic.ir/project-img/Link-shortener/Link-shortener.png)
+![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/file_uploader.png)
 
