@@ -94,8 +94,19 @@ if(isset($_GET['delete'])){
 
             <tr>
 
+                <?php
+                $check=getimagesize($file['file_link']);
+
+                if($check):?>
+
+                <td><img src="<?= $file['file_link']?>" style=" width: 100px" alt=""></td>
+
+                <?php else:?>
+
 
                 <td><?= $file['file_name']?></td>
+
+                <?php endif;?>
 
                 <td>
                     <a class="delete-btn" href="index.php?delete=<?= $file['id']?>">delete</a>
