@@ -2,6 +2,11 @@
 require_once ('./config/loader.php');
 
 
+
+$query_all_file="SELECT * FROM files ";
+$result=$conn->query($query_all_file);
+$result->execute();
+$files_list=$result->fetchAll();
 ?>
 
 
@@ -14,7 +19,8 @@ require_once ('./config/loader.php');
     <title>Link shortener</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
@@ -29,13 +35,15 @@ require_once ('./config/loader.php');
                 <br>
                 <input type="file" name="fileToUpload" id="fileToUpload">
                 <br>
+                <br>
                 <select name="type_link" class="select-fe" name="" id="">
                     <option value="directly">directly</option>
                     <option value="indirect">indirect</option>
 
                 </select>
 
-            <br>
+
+                <br>
 
             <br>
             <button type="submit" name="submit" class="button-submit">upload</button>
@@ -51,24 +59,38 @@ require_once ('./config/loader.php');
 
 </div>
 
+<div class="container">
+    <div class="container mt-3">
+        <h2>Uploaded files</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Operation</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ( $files_list as $file ):?>
+
+            <tr>
+
+
+                <td><?= $file['file_name']?></td>
+
+                <td>
+                    <a href="">delete</a>
+                    <a href="<?= $file['file_link']?>">view</a>
+                </td>
+
+            </tr>
+            <?php endforeach;?>
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
 </body>
 </html>
-
-<?php
-//get url
-//
-// get shorted link
-// shorted link  is in database url
-
-// shorted link  in database = true   alert = url is not use
-
-//shorted link  in database = false
-//
-//save link and show shortlink in page
-//
-//
-
-
-
-
-?>
