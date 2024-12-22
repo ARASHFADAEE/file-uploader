@@ -2,11 +2,31 @@
 require_once ('./config/loader.php');
 
 
-
+// start show lists files uploaded
 $query_all_file="SELECT * FROM files ";
 $result=$conn->query($query_all_file);
 $result->execute();
 $files_list=$result->fetchAll();
+
+
+//delete file
+
+if(isset($_GET['delete'])){
+    try {
+        $id=$_GET['delete'];
+        $query_delete="DELETE FROM files WHERE id=?";
+        $result=$conn->prepare($query_delete);
+        $result->bindValue(1,$id);
+        $result->execute();
+
+        header('location: index.php');
+
+    }catch (Exception $e){
+        echo $e->getMessage();
+    }
+
+
+}
 ?>
 
 
@@ -78,7 +98,7 @@ $files_list=$result->fetchAll();
                 <td><?= $file['file_name']?></td>
 
                 <td>
-                    <a href="">delete</a>
+                    <a href="index.php?delete=<?= $file['id']?>">delete</a>
                     <a href="<?= $file['file_link']?>">view</a>
                 </td>
 
