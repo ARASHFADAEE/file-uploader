@@ -4,7 +4,7 @@ require_once ('./config/loader.php');
 
 
 $target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$target_file = $target_dir."file_".time()."set".basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
@@ -53,19 +53,21 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
-        $url="http://localhost/php/file-uploader/uploads/".$_FILES["fileToUpload"]["name"];
+        $url="http://localhost/php/file-uploader/".$target_file;
         $file_name=basename( $_FILES["fileToUpload"]["name"]);
         $type_link=$_POST['type_link'];
         try {
 
             if (isset($url)){
-                $query="INSERT INTO files SET file_name=? , file_link=? , type=?";
+                $query="INSERT INTO files SET file_name=? , file_link=? , type=? , create_time=?";
 
                 $stmt=$conn->prepare($query);
 
                 $stmt->bindvalue(1,$file_name);
                 $stmt->bindValue(2,$url);
                 $stmt->bindValue(3,$type_link);
+                $stmt->bindValue(4,time());
+
 
                 $stmt->execute();
 
