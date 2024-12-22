@@ -1,13 +1,20 @@
 <!-- errors validation-->
 <?php if(isset($_GET['check']) && $_GET['check']=='ok'):?>
     <div class="alert alert-danger alert_custom " >
-        <p><?php echo $_GET['check']?></p>
+        <p><?php echo $_GET['message']?></p>
     </div>
 <?php endif;?>
 
-<?php if(isset($_GET['empty']) && $_GET['empty']=='true'):?>
+<?php if(isset($_GET['error']) && $_GET['error']=='ok'):?>
     <div class="alert alert-danger alert_custom " >
-        <p>Please fill in all fields</p>
+        <p><?php echo $_GET['message']?></p>
+    </div>
+<?php endif;?>
+
+
+<?php if(isset($_GET['file_exists']) && $_GET['file_exists']=='ok'):?>
+    <div class="alert alert-danger alert_custom " >
+        <p><?php echo $_GET['message']?></p>
     </div>
 <?php endif;?>
 
