@@ -1,7 +1,7 @@
-
-<?php if(isset($_GET['haslink']) && $_GET['haslink']=='ok'):?>
+<!-- errors validation-->
+<?php if(isset($_GET['check']) && $_GET['check']=='ok'):?>
     <div class="alert alert-danger alert_custom " >
-        <p>This link is already registered</p>
+        <p><?php echo $_GET['check']?></p>
     </div>
 <?php endif;?>
 
@@ -11,6 +11,7 @@
     </div>
 <?php endif;?>
 
+<!-- success file upload-->
 <?php if(isset($_GET['file_upload']) && $_GET['file_upload']=='ok'):?>
     <div class="alert alert-success alert_custom " >
         <p>file uploaded</p>
