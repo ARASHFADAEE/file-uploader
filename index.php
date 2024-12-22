@@ -98,8 +98,8 @@ if(isset($_GET['delete'])){
                 <td><?= $file['file_name']?></td>
 
                 <td>
-                    <a href="index.php?delete=<?= $file['id']?>">delete</a>
-                    <a href="<?= $file['file_link']?>">view</a>
+                    <a class="delete-btn" href="index.php?delete=<?= $file['id']?>">delete</a>
+                    <a class="save-btn" download href="<?= $file['file_link']?>">download</a>
                 </td>
 
             </tr>

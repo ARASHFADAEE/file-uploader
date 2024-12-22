@@ -73,3 +73,23 @@ input[type="file"]::file-selector-button {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.delete-btn{
+    color: #ffff !important;
+    background: red !important;
+    padding:9px !important;
+    border-radius: 10px !important;
+    margin-top: 10px !important;
+    text-decoration: none;
+
+}
+
+.save-btn{
+    color: #ffffff !important;
+    background: green !important;
+    padding:9px !important;
+    border-radius: 10px !important;
+    margin-top: 10px !important;
+    text-decoration: none;
+
+}
