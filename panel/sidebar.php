@@ -124,7 +124,16 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="/apps/mailbox.php" class="group">
+                            <a
+                                <?php if (isset($_GET['users_lists']) && $_GET['users_lists'] = 'ok') {
+                                    ?>
+                                    style=" background-color: rgb(0 0 0 / 0.08);
+  --tw-text-opacity: 1;
+  color: rgb(14 23 38 / var(--tw-text-opacity));"
+                                    <?php
+                                } ?>
+                                
+                                href="./users.php?users_lists=ok" class="group">
                                 <div class="flex items-center">
                                     <svg class="group-hover:!text-primary shrink-0" width="20" height="20"
                                          viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
