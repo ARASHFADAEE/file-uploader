@@ -1,7 +1,7 @@
 <?php
 session_start();
+
 require_once('./class/auth.php');
-require_once('./config/database.php');
 
 $auth = new Auth();
 
@@ -18,29 +18,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
     // Validate file type
     $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
     if (!in_array($imageFileType, $allowed_types)) {
-        header("location: ./index.php?file_format=no&message=Only JPG, JPEG, PNG, and GIF files are allowed.");
+        header("location: ./upload-file.php?file_format=no&message=Only JPG, JPEG, PNG, and GIF files are allowed.");
         $uploadOk = false;
     }
 
     // Validate file size
     if ($_FILES["fileToUpload"]["size"] > 500000) {
-        header("location: ./index.php?file_large=ok&message=File size exceeds limit.");
+        header("location: ./upload-file.php?file_large=ok&message=File size exceeds limit.");
         $uploadOk = false;
     }
 
     // Validate image
     if (getimagesize($_FILES["fileToUpload"]["tmp_name"]) === false) {
-        header("location: ./index.php?error=ok&message=File is not a valid image.");
+        header("location: ./upload-file.php?error=ok&message=File is not a valid image.");
         $uploadOk = false;
     }
 
     // Check for upload errors
     if ($uploadOk) {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            $url = "http://localhost/php/file-uploader/" . $target_file;
+            $url = "http://localhost/php/file-uploader/panel" . $target_file;
             $type_link = htmlspecialchars($_POST['type_link'] ?? 'directly');
 
+
             try {
+                include './config/database.php';
+
 
                 $query = "INSERT INTO files (user_id, file_name, file_link, type, create_time) VALUES (?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($query);
@@ -53,13 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
 
                 $stmt->execute();
 
-                header("location: ./index.php?file_upload=ok&url_file=" . urlencode($url));
+                header("location: ./upload-file.php?file_upload=ok&url_file=" . urlencode($url));
             } catch (Exception $e) {
                 error_log($e->getMessage());
-                header("location: ./index.php?error=db&message=Database error.");
+                header("location: ./upload-file.php?error=db&message=Database error.");
             }
         } else {
-            header("location: ./index.php?error=upload_failed&message=File upload failed.");
+            header("location: ./upload-file.php?error=upload_failed&message=File upload failed.");
         }
     }
 }
@@ -67,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
 ?>
 
 <?php include 'header-main.php'; ?>
-
+<?php require_once ('./config/alerts.php')?>
 <form class="space-y-5" method="post" enctype="multipart/form-data">
     <div class="flex sm:flex-row flex-col">
         <label for="fileToUpload" class="mb-0 sm:w-1/4 sm:ltr:mr-2 rtl:ml-2">File</label>

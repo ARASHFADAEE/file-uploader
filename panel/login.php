@@ -3,6 +3,10 @@ require_once ('./class/auth.php');
 
 $auth = new auth();
 
+session_start();
+
+
+
 if (isset($_POST['submit'])){
     $key=$_POST['key'];
     $password=$_POST['password'];
