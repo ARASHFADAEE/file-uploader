@@ -25,6 +25,7 @@ class Auth
                 $_SESSION['user_name'] = $data->username;
                 $_SESSION['email'] = $data->email;
 
+
                 header('location: ./index.php?login=ok');
             } else {
                 header('location: ./login.php?hasuser=no&message=wrong email or username or password');
@@ -64,8 +65,11 @@ class Auth
         }
     }
 
-    public function is_logged_in()
+    public function is_login()
     {
+        if(!isset($_SESSION['user_id'])){
+            header('location: ./login.php');
+        }
 
     }
 
@@ -82,3 +86,5 @@ class Auth
         $this->conn = null; // Close the database connection
     }
 }
+
+

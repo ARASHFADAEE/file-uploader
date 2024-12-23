@@ -1,3 +1,12 @@
+<?php
+require_once ('./class/auth.php');
+session_start();
+
+$auth =new Auth();
+$auth->is_login();
+
+
+?>
 <?php include 'header-main.php'; ?>
 
 <script defer src="/assets/js/apexcharts.js"></script>

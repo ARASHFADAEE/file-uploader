@@ -1,32 +1,32 @@
 <?php
-require_once ('./config/loader.php');
-
-
-// start show lists files uploaded
-$query_all_file="SELECT * FROM files ";
-$result=$conn->query($query_all_file);
-$result->execute();
-$files_list=$result->fetchAll();
-
-
-//delete file
-
-if(isset($_GET['delete'])){
-    try {
-        $id=$_GET['delete'];
-        $query_delete="DELETE FROM files WHERE id=?";
-        $result=$conn->prepare($query_delete);
-        $result->bindValue(1,$id);
-        $result->execute();
-
-        header('location: index.php');
-
-    }catch (Exception $e){
-        echo $e->getMessage();
-    }
-
-
-}
+//require_once ('./config/loader.php');
+//
+//
+//// start show lists files uploaded
+//$query_all_file="SELECT * FROM files ";
+//$result=$conn->query($query_all_file);
+//$result->execute();
+//$files_list=$result->fetchAll();
+//
+//
+////delete file
+//
+//if(isset($_GET['delete'])){
+//    try {
+//        $id=$_GET['delete'];
+//        $query_delete="DELETE FROM files WHERE id=?";
+//        $result=$conn->prepare($query_delete);
+//        $result->bindValue(1,$id);
+//        $result->execute();
+//
+//        header('location: index.php');
+//
+//    }catch (Exception $e){
+//        echo $e->getMessage();
+//    }
+//
+//
+//}
 ?>
 
 
@@ -69,7 +69,7 @@ if(isset($_GET['delete'])){
             <br>
             <button type="submit" name="submit" class="button-submit">upload</button>
 
-                <?php require_once ('./config/alerts.php');?>
+<!--                --><?php //require_once ('./config/alerts.php');?>
 
 
         </form>
@@ -91,31 +91,31 @@ if(isset($_GET['delete'])){
             </tr>
             </thead>
             <tbody>
-            <?php foreach ( $files_list as $file ):?>
+<!--            --><?php //foreach ( $files_list as $file ):?>
 
             <tr>
 
-                <?php
-                $check=getimagesize($file['file_link']);
-
-                if($check):?>
+<!--                --><?php
+//                $check=getimagesize($file['file_link']);
+//
+//                if($check):?>
 
                 <td><img src="<?= $file['file_link']?>" style=" width: 100px" alt=""></td>
 
-                <?php else:?>
-
+<!--                --><?php //else:?>
+//
 
                 <td><?= $file['file_name']?></td>
 
-                <?php endif;?>
-
-                <td style="padding-top: 22px ">
-                    <a class="delete-btn" href="index.php?delete=<?= $file['id']?>">delete</a>
-                    <a class="save-btn" download href="<?= $file['file_link']?>">download</a>
-                </td>
-
-            </tr>
-            <?php endforeach;?>
+<!--                --><?php //endif;?>
+<!---->
+<!--                <td style="padding-top: 22px ">-->
+<!--                    <a class="delete-btn" href="index.php?delete=--><?php //= $file['id']?><!--">delete</a>-->
+<!--                    <a class="save-btn" download href="--><?php //= $file['file_link']?><!--">download</a>-->
+<!--                </td>-->
+<!---->
+<!--            </tr>-->
+<!--            --><?php //endforeach;?>
 
 
             </tbody>
@@ -126,3 +126,6 @@ if(isset($_GET['delete'])){
 
 </body>
 </html>
+
+
+<?php //header('location: ./panel/index.php');?>
