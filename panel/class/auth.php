@@ -27,7 +27,7 @@ class Auth
                 $_SESSION['role'] = $data->role;
 
 
-                header('location: ./index.php?login=ok');
+                header('location: ./index.php?dashboard=ok&login=ok');
             } else {
                 header('location: ./login.php?hasuser=no&message=wrong email or username or password');
             }

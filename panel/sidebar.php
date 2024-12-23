@@ -122,32 +122,35 @@
                                 </div>
                             </a>
                         </li>
-
-                        <li class="nav-item">
-                            <a
-                                <?php if (isset($_GET['users_lists']) && $_GET['users_lists'] = 'ok') {
-                                    ?>
-                                    style=" background-color: rgb(0 0 0 / 0.08);
+                        <?php if ($_SESSION['role'] == 'admin'): ?>
+                            <li class="nav-item">
+                                <a
+                                    <?php if (isset($_GET['users_lists']) && $_GET['users_lists'] = 'ok') {
+                                        ?>
+                                        style=" background-color: rgb(0 0 0 / 0.08);
   --tw-text-opacity: 1;
   color: rgb(14 23 38 / var(--tw-text-opacity));"
-                                    <?php
-                                } ?>
-                                
-                                href="./users.php?users_lists=ok" class="group">
-                                <div class="flex items-center">
-                                    <svg class="group-hover:!text-primary shrink-0" width="20" height="20"
-                                         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle opacity="0.5" cx="15" cy="6" r="3" fill="currentColor"></circle>
-                                        <ellipse opacity="0.5" cx="16" cy="17" rx="5" ry="3"
-                                                 fill="currentColor"></ellipse>
-                                        <circle cx="9.00098" cy="6" r="4" fill="currentColor"></circle>
-                                        <ellipse cx="9.00098" cy="17.001" rx="7" ry="4" fill="currentColor"></ellipse>
-                                    </svg>
-                                    <span
-                                        class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">users</span>
-                                </div>
-                            </a>
-                        </li>
+                                        <?php
+                                    } ?>
+
+                                    href="./users.php?users_lists=ok" class="group">
+                                    <div class="flex items-center">
+                                        <svg class="group-hover:!text-primary shrink-0" width="20" height="20"
+                                             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle opacity="0.5" cx="15" cy="6" r="3" fill="currentColor"></circle>
+                                            <ellipse opacity="0.5" cx="16" cy="17" rx="5" ry="3"
+                                                     fill="currentColor"></ellipse>
+                                            <circle cx="9.00098" cy="6" r="4" fill="currentColor"></circle>
+                                            <ellipse cx="9.00098" cy="17.001" rx="7" ry="4"
+                                                     fill="currentColor"></ellipse>
+                                        </svg>
+                                        <span
+                                            class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">users</span>
+                                    </div>
+                                </a>
+                            </li>
+
+                        <?php endif; ?>
 
                     </ul>
                 </li>
