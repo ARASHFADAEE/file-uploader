@@ -50,7 +50,8 @@ if(isset($_GET['delete'])){
         <div class="link-box">
             <form method="post" action="upload.php" enctype="multipart/form-data">
 
-            <br>
+
+                <br>
                 <h2>Select image to upload:</h2>
                 <br>
                 <input type="file" name="fileToUpload" id="fileToUpload">

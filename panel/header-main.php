@@ -15,6 +15,8 @@
         <link defer rel='stylesheet' type='text/css' media='screen' href='./assets/css/animate.css' />
         <script src="./assets/js/perfect-scrollbar.min.js"></script>
         <script defer src="./assets/js/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     </head>
 
 
@@ -76,6 +78,8 @@
             }));
         });
         </script>
+
+
 
         <?php include 'theme-customizer.php'; ?>
 

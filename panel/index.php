@@ -123,6 +123,17 @@
 
     </div>
 </div>
+<?php if (isset($_GET['login'])&& $_GET['login']=='ok'):?>
+<script>
+        Swal.fire({
+        title: "Login was successful",
+        icon: "success",
+        draggable: true
+    });
+</script>
+
+<?php endif;?>
+</script>
 <script>
     document.addEventListener("alpine:init", () => {
         // total-visit
