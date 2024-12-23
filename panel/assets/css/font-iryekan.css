@@ -1,0 +1,12 @@
+@font-face{
+    font-family: "IRYekan";
+    src: url("../fonts/IRYekan/IRYekan.eot");
+    src: url("../fonts/IRYekan/IRYekan.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/IRYekan/IRYekan.woff")format("woff"),
+    url("../fonts/IRYekan/IRYekan.woff2")format("woff2"),
+    url("../fonts/IRYekan/IRYekan.ttf")format("truetype"),
+    url("../fonts/IRYekan/IRYekan.svg#IRYekan")format("svg");
+    font-weight:normal;
+    font-style:normal;
+    font-display:swap;
+}

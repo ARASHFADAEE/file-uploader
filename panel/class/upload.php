@@ -24,7 +24,7 @@ class upload{
 
 // Check if image file is a actual image or fake image
         if(isset($_POST["submit"])) {
-            $check = getimagesize($_FILES[$file]["tmp_name"]);
+            $check = getimagesize($_FILES['fileToUpload']["tmp_name"]);
             if($check !== false) {
                 header("location: ./index.php?check=ok&message=File is an image - ".$check["mime"].'.');
 
