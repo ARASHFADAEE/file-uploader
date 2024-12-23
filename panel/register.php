@@ -44,8 +44,8 @@ include 'header-main-auth.php';
                 >
                     <div class="mx-auto w-full max-w-[440px]">
                         <div class="mb-10">
-                            <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Login Panel</h1>
-                            <p class=" py-2 text-base font-bold leading-normal text-white-dark">Enter your username and password to enter the panel</p>
+                            <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">register</h1>
+                            <p class=" py-2 text-base font-bold leading-normal text-white-dark">Enter your username and password and email for signup in the panel</p>
                         </div>
                         <form class="space-y-5 dark:text-white" method="post">
                             <div>

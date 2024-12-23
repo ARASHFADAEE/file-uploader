@@ -18,6 +18,7 @@ $result->bindValue(1,'user');
 $result->execute();
 $count_users=$result->rowCount();
 
+$title='dashboard';
 
 ?>
 <?php include 'header-main.php'; ?>

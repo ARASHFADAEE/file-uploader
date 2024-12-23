@@ -7,7 +7,6 @@ $auth = new Auth();
 
 $auth->is_login();
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
     $target_dir = "./uploads/";
     $file_name = basename($_FILES["fileToUpload"]["name"]);
@@ -66,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
         }
     }
 }
+$title='upload file';
 
 ?>
 

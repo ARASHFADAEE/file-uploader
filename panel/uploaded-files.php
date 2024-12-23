@@ -41,6 +41,9 @@ if(isset($_GET['delete'])){
 
 
 }
+
+$title='uploaded files';
+
 ?>
 <?php include 'header-main.php'; ?>
 

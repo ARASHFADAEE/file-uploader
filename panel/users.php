@@ -34,6 +34,8 @@ if(isset($_GET['delete'])){
 
 
 }
+$title='users lists';
+
 ?>
 <?php include 'header-main.php'; ?>
 
