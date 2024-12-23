@@ -5,6 +5,19 @@ session_start();
 $auth =new Auth();
 $auth->is_login();
 
+include './config/database.php';
+
+$query_count_admin="SELECT * FROM `files` ";
+$result=$conn->query($query_count_admin);
+$result->execute();
+$count=$result->rowCount();
+
+$query_count_user="SELECT * FROM `users`  WHERE role=?";
+$result=$conn->prepare($query_count_user);
+$result->bindValue(1,'user');
+$result->execute();
+$count_users=$result->rowCount();
+
 
 ?>
 <?php include 'header-main.php'; ?>
@@ -24,7 +37,12 @@ $auth->is_login();
             <div class="panel h-full sm:col-span-2 lg:col-span-1">
                 <!-- statistics -->
                 <div class="flex items-center justify-between dark:text-white-light mb-5">
-                    <h5 class="font-semibold text-lg ">Statistics</h5>
+                    <?php if ($_SESSION['role']=='admin'):?>
+                    <h5 class="font-semibold text-lg ">status</h5>
+                    <?php elseif ($_SESSION['role']=='user'):?>
+                        <h5 class="font-semibold text-lg ">status</h5>
+
+                    <?php endif;?>
                     <div x-data="dropdown" @click.outside="open = false" class="dropdown">
                         <a href="javascript:;" @click="toggle">
                             <svg class="w-5 h-5 text-black/70 dark:text-white/70 hover:!text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,20 +62,33 @@ $auth->is_login();
                 <div class="grid sm:grid-cols-2 gap-8 text-sm text-[#515365] font-bold">
                     <div>
                         <div>
-                            <div>Total Visits</div>
-                            <div class="text-[#f8538d] text-lg">423,964</div>
+                            <?php if ($_SESSION['role']=='admin'):?>
+                                <div>Uploaded File in script</div>
+                            <?php elseif ($_SESSION['role']=='user'):?>
+                                <div>Your uploaded files</div>
+
+                            <?php endif;?>
+
+                            <?php if ($_SESSION['role']=='admin'):?>
+                                <div class="text-[#f8538d] text-lg"><?= $count?></div>
+                            <?php elseif ($_SESSION['role']=='user'):?>
+                                <div class="text-[#f8538d] text-lg">423,964</div>
+
+                            <?php endif;?>
                         </div>
                         <div x-ref="totalVisit" class="overflow-hidden"> </div>
                     </div>
+                    <?php if ($_SESSION['role']=='admin'):?>
 
                     <div>
                         <div>
-                            <div>Paid Visits</div>
-                            <div class="text-[#f8538d] text-lg">7,929</div>
+                            <div>Registered users</div>
+                            <div class="text-[#f8538d] text-lg"><?= $count_users ?></div>
                         </div>
                         <div x-ref="paidVisit" class="overflow-hidden">
                         </div>
                     </div>
+                    <?php endif;?>
                 </div>
             </div>
 

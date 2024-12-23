@@ -11,6 +11,9 @@ Using this script, you can have a file uploader site and earn money through indi
 - Create an indirect link for the user
 - Display list of uploaded files for the user
 - Possibility to delete the file in the script
+- Authentication system
+- Ability to manage files by users and admin
+- Dark Mode and White Mode template
 
 
 ## 🚀 About Me
@@ -27,12 +30,14 @@ Hi 👋! My name is Hossein and I'm a Backend Developer from AriasCode
 
 ## Tech Stack
 
-**Client:** html, css, bootstrap 
+**Client:** html, css, tailwind
 
 **Server:** php 
 
 
 ## Screenshots
-
-![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/file_uploader.png)
+![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/4.png)
+![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/3.png)
+![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/2.png)
+![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/1.png)
 
