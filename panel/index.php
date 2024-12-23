@@ -7,17 +7,29 @@ $auth->is_login();
 
 include './config/database.php';
 
+//query for show count files in admin dashboard
 $query_count_admin="SELECT * FROM `files` ";
 $result=$conn->query($query_count_admin);
 $result->execute();
 $count=$result->rowCount();
 
+// query for show count users in admin dashboard
 $query_count_user="SELECT * FROM `users`  WHERE role=?";
 $result=$conn->prepare($query_count_user);
 $result->bindValue(1,'user');
 $result->execute();
 $count_users=$result->rowCount();
 
+
+//query for show count files in users dashboard
+$query_count_admin="SELECT * FROM `files` WHERE user_id=?";
+$result=$conn->prepare($query_count_admin);
+$result->bindValue(1,$_SESSION['user_id']);
+$result->execute();
+$count_files_user=$result->rowCount();
+
+
+//title page 
 $title='dashboard';
 
 ?>
@@ -73,7 +85,7 @@ $title='dashboard';
                             <?php if ($_SESSION['role']=='admin'):?>
                                 <div class="text-[#f8538d] text-lg"><?= $count?></div>
                             <?php elseif ($_SESSION['role']=='user'):?>
-                                <div class="text-[#f8538d] text-lg">423,964</div>
+                                <div class="text-[#f8538d] text-lg"><?= $count_files_user?></div>
 
                             <?php endif;?>
                         </div>
