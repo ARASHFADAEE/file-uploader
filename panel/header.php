@@ -1,3 +1,6 @@
+
+
+
 <header class="z-40" :class="{'dark' : $store.app.semidark && $store.app.menu === 'horizontal'}">
     <div class="shadow-sm">
         <div class="relative bg-white flex w-full items-center px-5 py-2.5 dark:bg-[#0e1726]">
@@ -166,8 +169,8 @@
                                     <img class="rounded-md w-10 h-10 object-cover" src="./assets/images/user-profile.jpeg" alt="image" />
                                 </div>
                                 <div class="ltr:pl-4 rtl:pr-4 truncate">
-                                    <h4 class="text-base">John Doe<span class="text-xs bg-success-light rounded text-success px-1 ltr:ml-2 rtl:ml-2">Pro</span></h4>
-                                    <a class="text-black/60  hover:text-primary dark:text-dark-light/60 dark:hover:text-white" href="javascript:;">johndoe@gmail.com</a>
+                                    <h4 class="text-base"><?= $_SESSION['user_name']?><span class="text-xs bg-success-light rounded text-success px-1 ltr:ml-2 rtl:ml-2">Pro</span></h4>
+                                    <a class="text-black/60  hover:text-primary dark:text-dark-light/60 dark:hover:text-white" href="javascript:;"><?= $_SESSION['email']?></a>
                                 </div>
                             </div>
                         </li>
