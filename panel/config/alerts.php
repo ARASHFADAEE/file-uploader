@@ -1,4 +1,6 @@
-<!-- errors validation-->
+<!-- errors validation file-->
+
+
 <?php if(isset($_GET['check']) && $_GET['check']=='ok'):?>
     <div class="alert alert-danger alert_custom " >
         <p><?php echo $_GET['message']?></p>
@@ -54,3 +56,5 @@
         <a href="<?php echo $_GET['url_file']?>">link :<?php echo $_GET['url_file']?></a>
     </div>
 <?php endif;?>
+
+

@@ -1,5 +1,15 @@
 <?php
+require_once ('./class/auth.php');
+
+$auth = new auth();
+
+if (isset($_POST['submit'])){
+    $key=$_POST['key'];
+    $password=$_POST['password'];
+    $auth->login($key,$password);
+}
 include 'header-main-auth.php';
+
 ?>
 
 
@@ -27,11 +37,21 @@ include 'header-main-auth.php';
                             <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Login Panel</h1>
                             <p class=" py-2 text-base font-bold leading-normal text-white-dark">Enter your username and password to enter the panel</p>
                         </div>
-                        <form class="space-y-5 dark:text-white">
+                        <?php if(isset($_GET['hasuser']) && $_GET['hasuser']=='no'):?>
+                            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                <p class="text-sm text-red-800  dark:bg-gray-800 dark:text-red-400 "><?= $_GET['message']?></p>
+                            </div>
+                        <?php endif;?>
+                        <?php if(isset($_GET['register']) && $_GET['register']=='ok'):?>
+                            <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                                <?= $_GET['message']?>
+                            </div>
+                        <?php endif;?>
+                        <form class="space-y-5 dark:text-white" method="post">
                             <div>
                                 <label for="Email">email</label>
                                 <div class="relative text-white-dark">
-                                    <input id="Email" type="text" placeholder="enter your email or username" class="form-input ps-10 placeholder:text-white-dark" />
+                                    <input id="Email" type="text" name="key" placeholder="enter your email or username" class="form-input ps-10 placeholder:text-white-dark" />
                                     <span class="absolute start-4 top-1/2 -translate-y-1/2">
                                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                                                     <path
@@ -53,6 +73,7 @@ include 'header-main-auth.php';
                                     <input
                                         id="Password"
                                         type="password"
+                                        name="password"
                                         placeholder="enter your password"
                                         class="form-input ps-10 placeholder:text-white-dark"
                                     />
@@ -91,6 +112,7 @@ include 'header-main-auth.php';
                             </div>
                             <button
                                 type="submit"
+                                name="submit"
                                 class=" btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]  py-2"
                             >
                                 login

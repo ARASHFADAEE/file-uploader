@@ -1,6 +1,5 @@
 <?php
 
-require_once ('./config/loader.php');
 class auth
 {
     
@@ -18,7 +17,8 @@ class auth
     public function login($key,$password){
 
         try {
-            $query = "SELECT * FROM users (WHERE email =:key OR username=:key) AND password=:password";
+            require_once('./config/database.php');
+            $query = "SELECT * FROM users WHERE ( email =:key OR username=:key) AND password=:password";
             $stmt = $conn->prepare($query);
             $stmt->bindvalue(':key',$key);
             $stmt->bindvalue(':password',$password);
@@ -34,8 +34,11 @@ class auth
                 $_SESSION['user_name']=$data->username;
                 $_SESSION['email']=$data->email;
                 
-                header('location: ./panel/index.php?login=ok');
+                header('location: ./index.php?login=ok');
 
+
+            }else{
+                header('location: ./login.php?hasuser=no&message=wrong email or username or password');
 
             }
             
@@ -63,7 +66,7 @@ class auth
             $has_data=$stmt->rowcount();
             
             if ($has_data){
-                header("location: ../panel/login.php?has_data=ok&message= username or email already exists");
+                header("location: ./register.php?hasuser=ok&message= username or email already exists");
             }else{
                 $query2="INSERT INTO users SET username=? , email=? , password=?";
                 $stmt=$conn->prepare($query2);
@@ -71,7 +74,7 @@ class auth
                 $stmt->bindvalue(2,$email);
                 $stmt->bindvalue(1,$password);
 
-                header("location: ../panel/register.php?register=ok&message=account created");
+                header("location: ./login.php?register=ok&message=account created , please login");
 
 
 
