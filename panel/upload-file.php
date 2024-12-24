@@ -42,7 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
 
             try {
                 include './config/database.php';
-
+                
+                  if ($_POST['type_link']=='directly'){
 
                 $query = "INSERT INTO files (user_id, file_name, file_link, type, create_time) VALUES (?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($query);
@@ -56,9 +57,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
                 $stmt->execute();
 
                 header("location: ./upload-file.php?file_upload=ok&url_file=" . urlencode($url));
+                  }elseif ($_POST['type_link']=='indirect'){
+                      $random=rand(100000,99999).time();
+                      $query = "INSERT INTO files (user_id, file_name, file_link, type,indirect_slug, create_time) VALUES (?, ?, ?, ?, ?,?)";
+                      $stmt = $conn->prepare($query);
+
+                      $stmt->bindValue(1, $_SESSION['user_id'], PDO::PARAM_INT);
+                      $stmt->bindValue(2, $file_name, PDO::PARAM_STR);
+                      $stmt->bindValue(3, $url, PDO::PARAM_STR);
+                      $stmt->bindValue(4, $_POST['type_link'], PDO::PARAM_STR);
+                      $stmt->bindValue(5,$random , PDO::PARAM_INT);
+                      $stmt->bindValue(6, time(), PDO::PARAM_INT);
+
+                      $stmt->execute();
+                      $url2='http://localhost/php/file-uploader/?slug='.$random;
+                      header("location: ./upload-file.php?file_upload=ok&url_file=" . urlencode($url2));
+
+
+                  }
+
             } catch (Exception $e) {
                 error_log($e->getMessage());
                 header("location: ./upload-file.php?error=db&message=Database error.");
+            
+            
+            
             }
         } else {
             header("location: ./upload-file.php?error=upload_failed&message=File upload failed.");

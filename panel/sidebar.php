@@ -166,7 +166,7 @@
                 </h2>
 
                 <li class="menu nav-item">
-                    <a href="https://vristo.sbthemes.com" target="_blank" class="nav-link group">
+                    <a href="https://github.com/ARASHFADAEE/file-uploader" target="_blank" class="nav-link group">
                         <div class="flex items-center">
 
                             <svg class="group-hover:!text-primary shrink-0" width="20" height="20" viewBox="0 0 24 24"
