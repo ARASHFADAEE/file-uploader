@@ -27,13 +27,43 @@ $i=1;
 
 if(isset($_GET['delete'])){
     try {
+        
+        //Check the existence of the file in the database
         $id=$_GET['delete'];
-        $query_delete="DELETE FROM files WHERE id=?";
-        $result=$conn->prepare($query_delete);
-        $result->bindValue(1,$id);
-        $result->execute();
+        $query_verify="SELECT * FROM `files` WHERE id=?";
+        $result_verify=$conn->prepare($query_verify);
+        $result_verify->bindValue(1,$id,PDO::PARAM_INT);
+        $result_verify->execute();
+        $count_file_delete=$result_verify->rowCount();
+        $file_name=$result_verify->fetch(PDO::FETCH_ASSOC);
+        
+        //Checking the existence of the file in the root
+        if ($count_file_delete){
+            $file_path='../uploads/'.$file_name['file_name'];
+            
 
-        header('location: ./uploaded-files.php?lists_uploaded=ok&delete_item=ok&message=file deleted successfully');
+            if (is_file($file_path)) {
+                //delete file in server
+                unlink($file_path);
+            } else {
+                // Handle the case where the file doesn't exist or is a directory
+                echo 'File does not exist or is a directory';
+                die();
+            }
+            
+            //delete file in database
+            $query_delete="DELETE FROM files WHERE id=?";
+            $result=$conn->prepare($query_delete);
+            $result->bindValue(1,$id);
+            $result->execute();
+
+            header('location: ./uploaded-files.php?lists_uploaded=ok&delete_item=ok&message=file deleted successfully');
+
+
+        }
+
+        
+
 
     }catch (Exception $e){
         echo $e->getMessage();

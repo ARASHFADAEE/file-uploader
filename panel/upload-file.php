@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
     $target_dir = "../uploads/";
     $file_name = basename($_FILES["fileToUpload"]["name"]);
     $target_file = $target_dir . "file_" . time() . "_set_" . $file_name;
+    $target_name="file_" . time() . "_set_" . $file_name;
     $uploadOk = true;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
                 $stmt = $conn->prepare($query);
 
                 $stmt->bindValue(1, $_SESSION['user_id'], PDO::PARAM_INT);
-                $stmt->bindValue(2, $file_name, PDO::PARAM_STR);
+                $stmt->bindValue(2, $target_name, PDO::PARAM_STR);
                 $stmt->bindValue(3, $url, PDO::PARAM_STR);
                 $stmt->bindValue(4, $type_link, PDO::PARAM_STR);
                 $stmt->bindValue(5, time(), PDO::PARAM_INT);
@@ -63,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
                       $stmt = $conn->prepare($query);
 
                       $stmt->bindValue(1, $_SESSION['user_id'], PDO::PARAM_INT);
-                      $stmt->bindValue(2, $file_name, PDO::PARAM_STR);
+                      $stmt->bindValue(2, $target_name, PDO::PARAM_STR);
                       $stmt->bindValue(3, $url, PDO::PARAM_STR);
                       $stmt->bindValue(4, $_POST['type_link'], PDO::PARAM_STR);
                       $stmt->bindValue(5,$random , PDO::PARAM_INT);

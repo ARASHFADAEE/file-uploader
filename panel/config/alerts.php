@@ -65,3 +65,12 @@
         <p class="text-sm text-red-800  dark:bg-gray-800 dark:text-red-400 "><?= $_GET['message']?></p>
     </div>
 <?php endif;?>
+
+
+<!--delete: file not found -->
+
+<?php if(isset($_GET['delete_item']) && $_GET['delete_item']=='no'):?>
+    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+        <p class="text-sm text-red-800  dark:bg-gray-800 dark:text-red-400 "><?= $_GET['message']?></p>
+    </div>
+<?php endif;?>
