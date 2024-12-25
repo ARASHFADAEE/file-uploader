@@ -104,6 +104,7 @@ $title='uploaded files';
             </table>
         </div>
     </div>
+    
 </div>
 
 <?php include 'footer-main.php'; ?>

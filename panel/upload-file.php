@@ -8,7 +8,7 @@ $auth = new Auth();
 $auth->is_login();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
-    $target_dir = "./uploads/";
+    $target_dir = "../uploads/";
     $file_name = basename($_FILES["fileToUpload"]["name"]);
     $target_file = $target_dir . "file_" . time() . "_set_" . $file_name;
     $uploadOk = true;
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
     }
 
     // Validate file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
+    if ($_FILES["fileToUpload"]["size"] > 50000000) {
         header("location: ./upload-file.php?file_large=ok&message=File size exceeds limit.");
         $uploadOk = false;
     }
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
     // Check for upload errors
     if ($uploadOk) {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            $url = "http://localhost/php/file-uploader/panel" . $target_file;
+            $url = "http://localhost/php/file-uploader".str_replace('../','/',$target_file) ;
             $type_link = htmlspecialchars($_POST['type_link'] ?? 'directly');
 
 
