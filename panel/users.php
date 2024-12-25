@@ -6,7 +6,7 @@ require_once('./class/auth.php');
 $auth = new Auth();
 
 $auth->is_login();
-include './config/database.php';
+include './config/loader.php';
 //lists users
 if($_SESSION['role']=='admin'){
     $query_all_users = "SELECT * FROM `users` ";

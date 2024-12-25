@@ -6,7 +6,7 @@ class Auth
 
     public function __construct()
     {
-        require_once('./config/database.php');
+        require_once('./config/loader.php');
         $this->conn = $conn;
     }
 

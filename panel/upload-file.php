@@ -36,12 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
     // Check for upload errors
     if ($uploadOk) {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            $url = "http://localhost/php/file-uploader".str_replace('../','/',$target_file) ;
+            $url = $_ENV['SITE_URL'].str_replace('../','/',$target_file) ;
             $type_link = htmlspecialchars($_POST['type_link'] ?? 'directly');
 
 
             try {
-                include './config/database.php';
+                include './config/loader.php';
                 
                   if ($_POST['type_link']=='directly'){
 
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
                       $stmt->bindValue(6, time(), PDO::PARAM_INT);
 
                       $stmt->execute();
-                      $url2='http://localhost/php/file-uploader/?slug='.$random;
+                      $url2=$_ENV['SITE_URL'].'/?slug='.$random;
                       header("location: ./upload-file.php?file_upload=ok&url_file=" . urlencode($url2));
 
 

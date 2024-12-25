@@ -6,7 +6,7 @@ require_once('./class/auth.php');
 $auth = new Auth();
 
 $auth->is_login();
-include './config/database.php';
+include './config/loader.php';
 
 if ($_SESSION['role']=='user') {
     $query_all_file = "SELECT * FROM `files` WHERE user_id=?";
@@ -92,7 +92,7 @@ $title='uploaded files';
                     <td>
                         <a href="./uploaded-files.php?delete=<?= $file->id ?>" style="background: red; padding: 4px; border-radius: 10px; color: #ffff;margin-right: 5px; ">delete</a>
                         <?php if ($file->type=='indirect'):?>
-                        <a  style="background: blue; padding: 4px; border-radius: 10px; color: #ffff;margin-right: 5px; "  href="<?= "http://localhost/php/file-uploader/?slug=".$file->indirect_slug?>">indirect link</a>
+                        <a  style="background: blue; padding: 4px; border-radius: 10px; color: #ffff;margin-right: 5px; "  href="<?= $_ENV['SITE_URL']."/?slug=".$file->indirect_slug?>">indirect link</a>
                          <?php elseif($file->type=='directly'):?>
 
                         <a  style="background: blue; padding: 4px; border-radius: 10px; color: #ffff;margin-right: 5px; " download href="<?= $file->file_link?>">download</a>

@@ -5,7 +5,7 @@ session_start();
 $auth =new Auth();
 $auth->is_login();
 
-include './config/database.php';
+include './config/loader.php';
 
 //query for show count files in admin dashboard
 $query_count_admin="SELECT * FROM `files` ";
