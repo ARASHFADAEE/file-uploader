@@ -6,14 +6,15 @@ Using this script, you can have a file uploader site and earn money through indi
 
 ## Features
 
-- Upload all kinds of photos
-- Show the download link live
-- Create an indirect link for the user
-- Display list of uploaded files for the user
-- Possibility to delete the file in the script
+- Upload all kinds of photos and files
+- Display the download link live
+- Creating an indirect link for the user
+- Display the list of uploaded files for the user
+- Ability to delete the file in the script
 - Authentication system
 - Ability to manage files by users and admin
-- Dark Mode and White Mode template
+- Dark mode and white mode template
+- The possibility of uploading a file through a link
 
 
 ## 🚀 About Me
@@ -36,9 +37,11 @@ Hi 👋! My name is Hossein and I'm a Backend Developer from AriasCode
 
 
 ## Screenshots
-![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/4.png)
-![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/3.png)
-![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/2.png)
-![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/6.png)
-![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/1.png)
+![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/login.png)
+![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/dashboard.png)
+![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/uploaded-files.png)
+![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/upload-file.png)
+![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/upload-link.png)
+![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/users.png)
+
 
