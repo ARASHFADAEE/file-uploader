@@ -52,10 +52,23 @@ if(isset($_GET['delete'])){
             }
             
             //delete file in database
-            $query_delete="DELETE FROM files WHERE id=?";
-            $result=$conn->prepare($query_delete);
+            $query_access="SELECT * FROM files WHERE id=? AND user_id=?";
+            $result=$conn->prepare($query_access);
             $result->bindValue(1,$id);
+            $result->bindValue(2,$_SESSION['user_id']);
             $result->execute();
+            $has_access=$result->rowCount();
+            
+            if ($has_access){
+                $query_delete="DELETE FROM files WHERE id = ? AND user_id = ?;";
+                $result=$conn->prepare($query_delete);
+                $result->bindValue(1,$id);
+                $result->bindValue(2,$_SESSION['user_id']);
+                $result->execute();
+            }else{
+                header('location: ./uploaded-files.php?lists_uploaded=ok&delete_item=ok&message=dont have access');
+                
+            }
 
             header('location: ./uploaded-files.php?lists_uploaded=ok&delete_item=ok&message=file deleted successfully');
 
@@ -116,7 +129,7 @@ $title='uploaded files';
                     <?php else:?>
                     
 
-                    <td><?= file?></td>
+                    <td><?= $file->file_name?></td>
                     <?php endif;?>
                     <td><?= $file->file_name?></td>
                     <td>
