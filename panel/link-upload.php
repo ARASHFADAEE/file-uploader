@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
             $allowedExtensions = ['jpg', 'png', 'pdf', 'txt', 'mp3', 'zip'];
 
             if (!in_array($ext, $allowedExtensions)) {
-                header("location: ../panel/link-upload.php?error=invalid_file_type");
+                header("location: ../panel/link-upload.php?error=ok&message=invalid_file_type");
                 exit;
             }
 

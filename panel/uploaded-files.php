@@ -24,66 +24,53 @@ if ($_SESSION['role']=='user') {
 $i=1;
 
 //delete file
-
-if(isset($_GET['delete'])){
+if (isset($_GET['delete'])) {
     try {
-        
-        //Check the existence of the file in the database
-        $id=$_GET['delete'];
-        $query_verify="SELECT * FROM `files` WHERE id=?";
-        $result_verify=$conn->prepare($query_verify);
-        $result_verify->bindValue(1,$id,PDO::PARAM_INT);
-        $result_verify->execute();
-        $count_file_delete=$result_verify->rowCount();
-        $file_name=$result_verify->fetch(PDO::FETCH_ASSOC);
-        
-        //Checking the existence of the file in the root
-        if ($count_file_delete){
-            $file_path='../uploads/'.$file_name['file_name'];
-            
+        $id = $_GET['delete'];
+        $user_id = $_SESSION['user_id'];
+        $is_admin = $_SESSION['role'] === 'admin';
 
-            if (is_file($file_path)) {
-                //delete file in server
-                unlink($file_path);
+        // بررسی وجود فایل در دیتابیس
+        $query_verify = "SELECT * FROM files WHERE id = ?";
+        $stmt_verify = $conn->prepare($query_verify);
+        $stmt_verify->bindValue(1, $id, PDO::PARAM_INT);
+        $stmt_verify->execute();
+        $file_data = $stmt_verify->fetch(PDO::FETCH_ASSOC);
+
+        if ($file_data) {
+            $file_path = '../uploads/' . $file_data['file_name'];
+
+         
+
+            // بررسی دسترسی کاربر به فایل
+            if ($file_data['user_id'] === $user_id || $is_admin) {
+                $query_delete = "DELETE FROM files WHERE id = ?";
+                $stmt_delete = $conn->prepare($query_delete);
+                $stmt_delete->bindValue(1, $id, PDO::PARAM_INT);
+                $stmt_delete->execute();
+                // بررسی وجود فایل در سرور
+                if (is_file($file_path)) {
+                    unlink($file_path); // حذف فایل از سرور
+                } else {
+                    header('location: ./uploaded-files.php?error-ok&message=File not found on server');
+                    exit();
+                }
+
+                header('location: ./uploaded-files.php?error=ok&message=File deleted successfully');
+                exit();
             } else {
-                
-                echo 'File does not exist or is a directory';
-                die();
+                header('location: ./uploaded-files.php?error=ok&message=Access denied');
+                exit();
             }
-            
-            //delete file in database
-            $query_access="SELECT * FROM files WHERE id=? AND user_id=?";
-            $result=$conn->prepare($query_access);
-            $result->bindValue(1,$id);
-            $result->bindValue(2,$_SESSION['user_id']);
-            $result->execute();
-            $has_access=$result->rowCount();
-            
-            if ($has_access){
-                $query_delete="DELETE FROM files WHERE id = ? AND user_id = ?;";
-                $result=$conn->prepare($query_delete);
-                $result->bindValue(1,$id);
-                $result->bindValue(2,$_SESSION['user_id']);
-                $result->execute();
-            }else{
-                header('location: ./uploaded-files.php?lists_uploaded=ok&delete_item=ok&message=dont have access');
-                
-            }
-
-            header('location: ./uploaded-files.php?lists_uploaded=ok&delete_item=ok&message=file deleted successfully');
-
-
+        } else {
+            header('location: ./uploaded-files.php?error=ok&message=File not found in database');
+            exit();
         }
-
-        
-
-
-    }catch (Exception $e){
-        echo $e->getMessage();
+    } catch (Exception $e) {
+        echo 'Error: ' . $e->getMessage();
     }
-
-
 }
+
 
 $title='uploaded files';
 
