@@ -37,9 +37,9 @@ Hi 👋! My name is Hossein and I'm a Backend Developer from AriasCode
 
 
 ## Screenshots
-![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/logint.png)
+![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/login.png)
 ![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/dashboard.png)
-![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/uoloaded-files.png)
+![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/uploaded-files.png)
 ![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/upload-file.png)
 ![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/upload-link.png)
 ![App Screenshot](https://dl.volnamusic.ir/project-img/file-uploader/users.png)
