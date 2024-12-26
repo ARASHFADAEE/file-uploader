@@ -25,7 +25,7 @@ if (isset($_GET['slug'])){
         <img style="margin-top: 10px" src="https://biz-cdn.varzesh3.com/banners/2024/12/11/D/oe0a1iur.gif" alt="">
         <img style="margin-top: 10px"  src="https://biz-cdn.varzesh3.com/banners/2024/12/10/C/trwotx42.gif" alt="">
 
-        <a download style="text-decoration: none;color: white;background: #006fff;padding: 17px;border-radius: 12px;margin-top: 23px;" href="<?php echo $data['file_link']?>">
+        <a download  style="text-decoration: none;color: white;background: #006fff;padding: 17px;border-radius: 12px;margin-top: 23px;" href="<?php echo $_ENV['SITE_URL'].$data['file_link']?>">
             DOWNLOAD
         </a>
 

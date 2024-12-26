@@ -46,7 +46,7 @@ if(isset($_GET['delete'])){
                 //delete file in server
                 unlink($file_path);
             } else {
-                // Handle the case where the file doesn't exist or is a directory
+                
                 echo 'File does not exist or is a directory';
                 die();
             }
